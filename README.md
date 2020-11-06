@@ -1,3 +1,10 @@
+# Deployment
+### `Deploy Link`
+ https://voice-search-lyrics-finder.netlify.app
+
+### `App Preview`
+![image](https://user-images.githubusercontent.com/53392598/98377100-64851e80-206a-11eb-809d-a301297421c5.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
