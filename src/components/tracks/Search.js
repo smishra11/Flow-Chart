@@ -15,14 +15,20 @@ mic.lang = 'en-US';
 function Search1() {
   const [trackTitle, setTrackTitle] = useState('');
   const [isListening, setIsListing] = useState(false);
+  const [submit, setSubmit] = useState(false);
 
   useEffect(() => {
     handleListen();
   }, [isListening]);
 
   const findTrack = (dispatch, e) => {
-    e.preventDefault();
+    setSubmit(true);
+    setIsListing(false);
 
+    e.preventDefault();
+    if (!trackTitle) {
+      return;
+    }
     axios
       .get(
         `https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?
@@ -34,7 +40,7 @@ function Search1() {
           payload: res.data.message.body.track_list,
         });
         setTrackTitle('');
-        setIsListing(false);
+        setSubmit(false);
       })
       .catch((err) => console.log(err));
   };
@@ -83,6 +89,22 @@ function Search1() {
               <i className="fas fa-music"></i> Search For A Song
             </h1>
             <p className="lead text-center">Get the lyrics for any song</p>
+            {submit && !trackTitle ? (
+              <div
+                className="alert alert-warning alert-dismissible fade show"
+                role="alert"
+              >
+                <strong>Song title is empty!</strong> Please enter song title
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            ) : null}
             <form onSubmit={findTrack.bind(this, dispatch)}>
               <div className="form-group">
                 <div className="input-group">
