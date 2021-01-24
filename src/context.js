@@ -30,7 +30,7 @@ export class Provider extends Component {
         page=1&page_size=10&country=IN&f_has_lyrics=1&apikey=${process.env.REACT_APP_MM_KEY}`
       )
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         this.setState({ track_list: res.data.message.body.track_list });
       })
       .catch((err) => console.log(err));
